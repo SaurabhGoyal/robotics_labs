@@ -1,0 +1,35 @@
+launch:
+
+- node:
+    pkg: "turtlesim"
+    exec: "turtlesim_node"
+    name: "sim"
+    namespace: "turtlesim_1"
+
+- node:
+    pkg: "turtlesim"
+    exec: "turtlesim_node"
+    name: "sim"
+    namespace: "turtlesim_2"
+    param:
+    -
+      name: "background_r"
+      value: 255
+    -
+      name: "background_g"
+      value: 142
+    -
+      name: "background_g"
+      value: 0
+  
+- node:
+    pkg: "turtlesim"
+    exec: "mimic"
+    name: "mimic"
+    remap:
+    -
+      from: "/input/pose"
+      to: "/turtlesim_1/turtle1/pose"
+    -
+      from: "/output/cmd_vel"
+      to: "/turtlesim_2/turtle1/cmd_vel"
