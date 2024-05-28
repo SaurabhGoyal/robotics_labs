@@ -1,17 +1,17 @@
 import rclpy
 from rclpy.node import Node
 
-from example_interfaces.srv import AddTwoInts
+from tutorial_interfaces.srv import AddThreeInts
 
 class MinimalService(Node):
 
     def __init__(self):
         super().__init__("minimal_server")
-        self.server = self.create_service(AddTwoInts, "adder", self.callback)
+        self.server = self.create_service(AddThreeInts, "adder", self.callback)
 
     def callback(self, req, res):
-        res.sum = req.a + req.b
-        self.get_logger().info('Req: a - %d, b - %d' % (req.a, req.b))
+        res.sum = req.a + req.b + req.c
+        self.get_logger().info('Req: a - %d, b - %d, c - %d' % (req.a, req.b, req.c))
         return res
 
 def main(args=None):

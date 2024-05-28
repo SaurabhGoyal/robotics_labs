@@ -1,16 +1,16 @@
 import rclpy
 from rclpy.node import Node
 
-from std_msgs.msg import String
+from tutorial_interfaces.msg import Num
 
 class MinimalSubsriber(Node):
 
     def __init__(self):
         super().__init__("minimal_subscriber")
-        self.subscription = self.create_subscription(String, 'chatter', self.callback, 10)
+        self.subscription = self.create_subscription(Num, 'chatter', self.callback, 10)
 
     def callback(self, msg):
-        self.get_logger().info('I heard: "%s"' % msg.data)
+        self.get_logger().info('I heard: "%s"' % msg.num)
 
 def main(args=None):
     rclpy.init(args=args)
