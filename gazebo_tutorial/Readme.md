@@ -16,6 +16,27 @@ Available at https://gazebosim.org/docs/harmonic/building_robot/ (Use https://ga
     - Add custom controller logic in a lidar_node.cc code to listen to one topic (/lidar) and depending on data send movement directions to another topic(/cmd_vel).
     - Launch file is for composing multiple nodes.
 - Lots of information about GUI - https://gazebosim.org/docs/harmonic/gui/
+- Dynamically loading models into world -
+    - World exposes a Create service for entity -
+    ```
+    % gz sim empty.sdf
+
+    % gz service -l | grep create
+
+    /world/empty/create
+    /world/empty/create_multiple
+
+    % gz service -is /world/empty/create
+    
+    Service providers [Address, Request Message Type, Response Message Type]:
+    tcp://172.17.0.1:32833, gz.msgs.EntityFactory, gz.msgs.Boolean
+    ```
+    - Call this to inject model 
+    ```
+    % gz service -s /world/empty/create --reqtype gz.msgs.EntityFactory --reptype gz.msgs.Boolean --timeout 1000 --req 'sdf_filename: "./gazebo_tutorial/models/rrbot.urdf", name: "urdf_model"'
+
+    data: true
+    ```
 
 # References
 - Tutorial code available at https://github.com/gazebosim/docs/tree/master/harmonic/tutorials
