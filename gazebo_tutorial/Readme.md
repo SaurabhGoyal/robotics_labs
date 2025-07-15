@@ -1,5 +1,6 @@
 # Gazebo tutorial
 Available at https://gazebosim.org/docs/harmonic/building_robot/ (Use https://gazebosim.org/docs/latest/building_robot/ for latest)
+- Specification is available at http://sdformat.org/spec?ver=1.8&elem=sdf
 
 # Steps
 - Created a 3 wheeled object with basic links and joints. Run with `gz sim robot.sdf`
@@ -14,6 +15,7 @@ Available at https://gazebosim.org/docs/harmonic/building_robot/ (Use https://ga
     - Add contact sensor to wall. Add IMU and Lidar to car. Lidar requires dedicated frame because it's position is dynamic and the information it generates is relative to objects other than the car.
     - Add custom controller logic in a lidar_node.cc code to listen to one topic (/lidar) and depending on data send movement directions to another topic(/cmd_vel).
     - Launch file is for composing multiple nodes.
+- Lots of information about GUI - https://gazebosim.org/docs/harmonic/gui/
 
 # References
 - Tutorial code available at https://github.com/gazebosim/docs/tree/master/harmonic/tutorials
